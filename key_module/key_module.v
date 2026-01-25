@@ -1,15 +1,15 @@
 module key_fliter(
     input wire clk,
     input wire rst,
-    input wire [4:0]key_in,
-    output reg [4:0]key_val
+    input wire [3:0]key_in,
+    output reg [3:0]key_val
 )
 
-localparam COUNT_MAX == 20d'500_000;
+localparam COUNT_MAX = 20'd500_000;
 
 reg [19:0]  counter;
 
-always@(posedge clk or posedeg rst)begin
+always@(posedge clk or posedge rst)begin
     if(rst)
         counter <= 0;
     else if(key_in[0]==1&&key_in[1]==1&&key_in[2]==1&&key_in[3]==1)
