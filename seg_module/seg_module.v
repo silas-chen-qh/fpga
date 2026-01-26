@@ -1,4 +1,4 @@
-module led_module(
+module seg_module(
     input wire clk,
     input wire rst,
     input wire [31:0] data_in,
@@ -9,15 +9,18 @@ module led_module(
 
 
 
-localparam COUNT_MAX = 20'd50_000
+localparam COUNT_MAX = 20'd50_000;
 
 
 
 
-reg [19:0] counter;
-reg [3:0] bit;
+reg [19:0] counter  ;
 
-assign wire data_now = data_in[8-1-bit +: 4]
+reg [3:0] bit   ;
+
+wire [3:0] data_now;
+
+assign data_now = data_in[4*(8-1-bit) +: 4] ;
 
 always@(posedge clk or posedge rst)begin
     if(rst)
